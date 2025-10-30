@@ -1,0 +1,226 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import json
+from collections import Counter
+import os
+
+educational_texts = {
+    'Mathematics': [
+        'Algebra is a branch of mathematics dealing with symbols and the rules for manipulating those symbols. Variables represent unknown values and equations show relationships between them.',
+        'Calculus is the mathematical study of continuous change. It has two major branches: differential calculus and integral calculus.',
+        'Geometry is the study of shapes, sizes, and properties of figures and spaces. It includes points, lines, angles, and polygons.',
+        'Statistics is the discipline that concerns the collection, organization, analysis, interpretation and presentation of data.',
+        'Trigonometry is the study of relationships between angles and sides of triangles. It uses sine, cosine, and tangent functions.',
+        'Linear algebra is the branch of mathematics concerning linear equations and linear maps. It is central to almost all areas of mathematics.',
+        'Number theory is the study of integers and integer-valued functions. It includes prime numbers, divisibility, and modular arithmetic.',
+        'Combinatorics is the study of finite or countable discrete structures. It deals with counting, arrangements, and selections.',
+        'Probability theory is the mathematical study of randomness and uncertainty. It provides tools for analyzing random events and processes.',
+        'Set theory is the mathematical study of sets, which are collections of objects. It forms the foundation of modern mathematics.',
+        'Complex analysis is the study of functions of complex numbers. It extends calculus to the complex plane.',
+        'Real analysis is the rigorous study of real numbers and real-valued functions. It provides foundations for calculus.',
+        'Abstract algebra studies algebraic structures like groups, rings, and fields. It generalizes arithmetic operations.',
+        'Topology is the study of properties of spaces that are preserved under continuous deformations. It includes concepts like continuity and connectedness.',
+        'Differential equations describe relationships involving rates of change. They are fundamental to modeling physical phenomena.',
+        'Numerical analysis develops algorithms for solving mathematical problems numerically. It bridges pure mathematics and computation.',
+        'Matrix theory studies rectangular arrays of numbers and their properties. Matrices are essential in linear algebra and applications.',
+        'Discrete mathematics covers mathematical structures that are fundamentally discrete. It includes logic, algorithms, and graph theory.',
+        'Functional analysis studies vector spaces of functions and their properties. It extends linear algebra to infinite dimensions.',
+        'Mathematical logic studies formal systems and the foundations of mathematics. It includes proof theory and model theory.',
+    ],
+    'Science': [
+        'Physics is the natural science that studies matter, energy, and forces. It explains how the universe works at all scales.',
+        'Chemistry is the study of matter, its properties, composition, structure, and the changes it undergoes during chemical reactions.',
+        'Biology is the natural science that studies living organisms and life processes. It includes genetics, evolution, and ecology.',
+        'Astronomy is the study of celestial objects and phenomena beyond Earth atmosphere. It includes stars, planets, and galaxies.',
+        'Ecology is the study of organisms and their interactions with each other and their physical environment.',
+        'Quantum mechanics describes the behavior of matter and energy at atomic and subatomic scales. It reveals the probabilistic nature of reality.',
+        'Thermodynamics studies heat, temperature, and energy transfer. It includes laws governing energy conservation and entropy.',
+        'Electromagnetism describes electric and magnetic fields and their interactions. It unifies electricity, magnetism, and light.',
+        'Optics is the study of light and its interactions with matter. It includes reflection, refraction, and wave properties.',
+        'Mechanics studies motion and forces. It includes kinematics, dynamics, and the laws of motion.',
+        'Relativity describes gravity and the relationship between space and time. It includes special and general relativity.',
+        'Particle physics studies the fundamental constituents of matter and their interactions. It includes quarks, leptons, and gauge bosons.',
+        'Astrophysics applies physics to astronomical objects and phenomena. It studies stars, black holes, and cosmology.',
+        'Molecular biology studies the structure and function of molecules in living cells. It includes DNA, proteins, and cellular processes.',
+        'Genetics is the study of heredity and genes. It explains how traits are inherited and how organisms evolve.',
+        'Biochemistry studies chemical processes within living organisms. It includes metabolism, enzyme kinetics, and cell signaling.',
+        'Microbiology studies microscopic organisms like bacteria, viruses, and fungi. It includes their structure, function, and interactions.',
+        'Botany is the study of plants, including their structure, function, growth, and ecology.',
+        'Zoology is the study of animals, including their structure, behavior, classification, and ecology.',
+        'Geology is the study of Earth, including its materials, structures, processes, and history.',
+    ],
+    'History': [
+        'Ancient civilizations like Egypt, Mesopotamia, and the Indus Valley developed complex societies with writing systems and governance.',
+        'The Renaissance was a period of European cultural and artistic rebirth from the 14th to 17th centuries.',
+        'The Industrial Revolution transformed societies through mechanization and factory systems from the 18th to 19th centuries.',
+        'World War II was a global conflict from 1939 to 1945 involving most of the world nations divided into two opposing military alliances.',
+        'The Cold War was a geopolitical tension between the Soviet Union and United States lasting from 1947 to 1991.',
+        'Ancient Greece developed democracy, philosophy, and scientific inquiry. It produced great thinkers like Socrates, Plato, and Aristotle.',
+        'The Roman Empire was one of the largest empires in history. It developed law, engineering, and governance systems that influenced the world.',
+        'The Middle Ages followed the fall of Rome and preceded the Renaissance. It was characterized by feudalism and the dominance of the Church.',
+        'The Age of Exploration saw European explorers discovering new lands and establishing global trade routes from the 15th to 17th centuries.',
+        'The Enlightenment was an intellectual movement emphasizing reason, science, and individual rights from the 17th to 18th centuries.',
+        'The French Revolution transformed French society and had profound effects on Europe. It established principles of liberty, equality, and fraternity.',
+        'The American Revolution established the United States as an independent nation. It inspired democratic movements worldwide.',
+        'The Victorian Era was a period of industrial, cultural, political, scientific, and military change in Britain from 1837 to 1901.',
+        'World War I was a global conflict from 1914 to 1918 that reshaped the political landscape of Europe.',
+        'The Great Depression was a severe economic downturn in the 1930s affecting the entire world.',
+        'The Civil Rights Movement fought against racial discrimination and segregation in the United States during the 1950s and 1960s.',
+        'The Space Race was a competition between the Soviet Union and United States to achieve space exploration milestones.',
+        'The Fall of the Berlin Wall in 1989 symbolized the end of the Cold War and the beginning of German reunification.',
+        'The Islamic Golden Age was a period of scientific, mathematical, and cultural flourishing in the Islamic world from the 8th to 14th centuries.',
+        'The Silk Road was an extensive trade network connecting East and West, facilitating commerce and cultural exchange for centuries.',
+    ],
+    'Literature': [
+        'Shakespeare was an English playwright and poet who wrote 37 plays and 154 sonnets during the Renaissance period.',
+        'Jane Austen wrote novels of manners exploring social commentary and romantic relationships in Regency England.',
+        'Charles Dickens was a Victorian novelist known for depicting social issues and creating memorable characters.',
+        'Mark Twain was an American writer famous for his novels about life on the Mississippi River and American frontier.',
+        'George Orwell wrote dystopian novels exploring themes of totalitarianism and political corruption.',
+        'Leo Tolstoy was a Russian novelist known for epic works exploring human nature and society.',
+        'Fyodor Dostoevsky was a Russian novelist exploring psychological depth and philosophical themes.',
+        'Jane Eyre by Charlotte Bronte is a novel about a young woman seeking independence and love in Victorian England.',
+        'Wuthering Heights by Emily Bronte is a gothic novel exploring passion, revenge, and social class.',
+        'Pride and Prejudice by Jane Austen explores themes of love, marriage, and social status in Regency England.',
+        'The Great Gatsby by F. Scott Fitzgerald captures the Jazz Age and explores themes of wealth and the American Dream.',
+        'To Kill a Mockingbird by Harper Lee addresses racial injustice and moral growth in the American South.',
+        'One Hundred Years of Solitude by Gabriel García Márquez is a magical realist novel about a family across generations.',
+        'The Catcher in the Rye by J.D. Salinger follows a teenager navigating adolescence and alienation.',
+        'Moby Dick by Herman Melville is an epic novel about obsession and man versus nature.',
+        'The Odyssey by Homer is an ancient Greek epic poem about a hero\'s journey home after the Trojan War.',
+        'The Iliad by Homer is an ancient Greek epic poem about the Trojan War.',
+        'Dante\'s Divine Comedy is a medieval Italian epic poem describing a journey through Hell, Purgatory, and Paradise.',
+        'Don Quixote by Miguel de Cervantes is a novel about a man who loses his sanity from reading chivalric romances.',
+        'Frankenstein by Mary Shelley is a gothic novel exploring themes of creation, responsibility, and isolation.',
+    ],
+    'Computer Science': [
+        'Programming is the process of creating a set of instructions that tell a computer how to perform a task.',
+        'Data structures are specialized formats for organizing, processing, and storing data efficiently.',
+        'Algorithms are step-by-step procedures for solving a problem or accomplishing a task.',
+        'Databases are organized collections of structured data stored and accessed electronically.',
+        'Machine learning is a subset of artificial intelligence that enables systems to learn from data.',
+        'Artificial intelligence is the simulation of human intelligence processes by computer systems.',
+        'Deep learning uses neural networks with multiple layers to learn representations of data.',
+        'Natural language processing enables computers to understand and generate human language.',
+        'Computer vision enables computers to interpret and understand visual information from images and videos.',
+        'Web development involves creating and maintaining websites and web applications.',
+        'Software engineering is the systematic application of engineering approaches to software development.',
+        'Operating systems manage computer hardware and software resources and provide services to applications.',
+        'Computer networks enable communication and resource sharing between computers.',
+        'Cybersecurity protects computer systems and networks from unauthorized access and attacks.',
+        'Cloud computing delivers computing services over the internet including storage, processing, and applications.',
+        'Distributed systems consist of multiple autonomous computers communicating through a network.',
+        'Compiler design involves creating programs that translate source code into executable machine code.',
+        'Formal languages and automata theory study abstract models of computation.',
+        'Cryptography protects information through encoding and decoding techniques.',
+        'Parallel computing uses multiple processors to solve problems simultaneously.',
+    ]
+}
+
+user_scenarios = [
+    {'subject': 'Mathematics', 'hours': 5, 'scenario': 'exam_prep'},
+    {'subject': 'Science', 'hours': 4, 'scenario': 'homework'},
+    {'subject': 'History', 'hours': 3, 'scenario': 'exam_prep'},
+    {'subject': 'Literature', 'hours': 6, 'scenario': 'project'},
+    {'subject': 'Computer Science', 'hours': 5, 'scenario': 'homework'},
+    {'subject': 'Mathematics', 'hours': 3, 'scenario': 'homework'},
+    {'subject': 'Science', 'hours': 5, 'scenario': 'exam_prep'},
+    {'subject': 'History', 'hours': 4, 'scenario': 'project'},
+    {'subject': 'Mathematics', 'hours': 7, 'scenario': 'exam_prep'},
+    {'subject': 'Literature', 'hours': 4, 'scenario': 'homework'},
+    {'subject': 'Computer Science', 'hours': 6, 'scenario': 'exam_prep'},
+    {'subject': 'Science', 'hours': 3, 'scenario': 'homework'},
+    {'subject': 'History', 'hours': 5, 'scenario': 'homework'},
+    {'subject': 'Mathematics', 'hours': 4, 'scenario': 'project'},
+    {'subject': 'Literature', 'hours': 5, 'scenario': 'exam_prep'},
+    {'subject': 'Computer Science', 'hours': 4, 'scenario': 'homework'},
+    {'subject': 'Science', 'hours': 6, 'scenario': 'project'},
+    {'subject': 'History', 'hours': 3, 'scenario': 'homework'},
+    {'subject': 'Mathematics', 'hours': 5, 'scenario': 'homework'},
+    {'subject': 'Literature', 'hours': 3, 'scenario': 'project'},
+    {'subject': 'Computer Science', 'hours': 7, 'scenario': 'project'},
+    {'subject': 'Science', 'hours': 4, 'scenario': 'exam_prep'},
+    {'subject': 'History', 'hours': 6, 'scenario': 'exam_prep'},
+    {'subject': 'Mathematics', 'hours': 6, 'scenario': 'exam_prep'},
+    {'subject': 'Literature', 'hours': 4, 'scenario': 'homework'},
+    {'subject': 'Computer Science', 'hours': 5, 'scenario': 'exam_prep'},
+    {'subject': 'Science', 'hours': 5, 'scenario': 'homework'},
+    {'subject': 'History', 'hours': 4, 'scenario': 'project'},
+    {'subject': 'Mathematics', 'hours': 3, 'scenario': 'project'},
+    {'subject': 'Literature', 'hours': 6, 'scenario': 'exam_prep'},
+]
+
+def clean_text_data(texts_dict):
+    """Clean and prepare text data"""
+    cleaned_data = []
+    for subject, texts in texts_dict.items():
+        for text in texts:
+            cleaned_text = text.lower().strip()
+            # Remove duplicates
+            if cleaned_text not in [item['text'] for item in cleaned_data]:
+                cleaned_data.append({
+                    'subject': subject,
+                    'text': cleaned_text,
+                    'word_count': len(cleaned_text.split()),
+                    'sentence_count': len(cleaned_text.split('.')),
+                })
+    return pd.DataFrame(cleaned_data)
+
+def perform_eda(df):
+    """Perform exploratory data analysis"""
+    print("=" * 60)
+    print("EXPLORATORY DATA ANALYSIS")
+    print("=" * 60)
+    print(f"\nDataset Shape: {df.shape}")
+    print(f"\nSubjects Distribution:\n{df['subject'].value_counts()}")
+    print(f"\nAverage Word Count by Subject:\n{df.groupby('subject')['word_count'].mean()}")
+    print(f"\nTotal Texts: {len(df)}")
+    print(f"\nAverage Words per Text: {df['word_count'].mean():.2f}")
+    print(f"\nMin Words: {df['word_count'].min()}, Max Words: {df['word_count'].max()}")
+    
+    # Create visualization
+    fig, axes = plt.subplots(1, 2, figsize=(14, 5))
+    
+    # Subject distribution pie chart
+    subject_counts = df['subject'].value_counts()
+    axes[0].pie(subject_counts, labels=subject_counts.index, autopct='%1.1f%%', startangle=90)
+    axes[0].set_title('Subject Distribution', fontsize=14, fontweight='bold')
+    
+    # Word count by subject
+    df.boxplot(column='word_count', by='subject', ax=axes[1])
+    axes[1].set_title('Word Count Distribution by Subject', fontsize=14, fontweight='bold')
+    axes[1].set_xlabel('Subject')
+    axes[1].set_ylabel('Word Count')
+    plt.suptitle('')
+    
+    plt.tight_layout()
+    plt.savefig('data_visualization.png', dpi=300, bbox_inches='tight')
+    print("\n✓ Visualization saved as 'data_visualization.png'")
+    
+    return df
+
+def save_datasets():
+    """Save cleaned datasets"""
+    # Clean text data
+    text_df = clean_text_data(educational_texts)
+    text_df = perform_eda(text_df)
+    text_df.to_csv('educational_texts.csv', index=False)
+    print("✓ Educational texts saved to 'educational_texts.csv'")
+    
+    # Save user scenarios
+    user_df = pd.DataFrame(user_scenarios)
+    user_df.to_csv('user_scenarios.csv', index=False)
+    print("✓ User scenarios saved to 'user_scenarios.csv'")
+    
+    # Save as JSON for easy access
+    with open('educational_texts.json', 'w') as f:
+        json.dump(educational_texts, f, indent=2)
+    print("✓ Educational texts saved to 'educational_texts.json'")
+    
+    return text_df, user_df
+
+if __name__ == "__main__":
+    print("\n🔄 Setting up data pipeline...\n")
+    text_df, user_df = save_datasets()
+    print("\n✓ Data setup complete!")
