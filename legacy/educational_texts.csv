@@ -1,0 +1,101 @@
+subject,text,word_count,sentence_count
+Mathematics,algebra is a branch of mathematics dealing with symbols and the rules for manipulating those symbols. variables represent unknown values and equations show relationships between them.,26,3
+Mathematics,calculus is the mathematical study of continuous change. it has two major branches: differential calculus and integral calculus.,18,3
+Mathematics,"geometry is the study of shapes, sizes, and properties of figures and spaces. it includes points, lines, angles, and polygons.",20,3
+Mathematics,"statistics is the discipline that concerns the collection, organization, analysis, interpretation and presentation of data.",15,2
+Mathematics,"trigonometry is the study of relationships between angles and sides of triangles. it uses sine, cosine, and tangent functions.",19,3
+Mathematics,linear algebra is the branch of mathematics concerning linear equations and linear maps. it is central to almost all areas of mathematics.,22,3
+Mathematics,"number theory is the study of integers and integer-valued functions. it includes prime numbers, divisibility, and modular arithmetic.",18,3
+Mathematics,"combinatorics is the study of finite or countable discrete structures. it deals with counting, arrangements, and selections.",17,3
+Mathematics,probability theory is the mathematical study of randomness and uncertainty. it provides tools for analyzing random events and processes.,19,3
+Mathematics,"set theory is the mathematical study of sets, which are collections of objects. it forms the foundation of modern mathematics.",20,3
+Mathematics,complex analysis is the study of functions of complex numbers. it extends calculus to the complex plane.,17,3
+Mathematics,real analysis is the rigorous study of real numbers and real-valued functions. it provides foundations for calculus.,17,3
+Mathematics,"abstract algebra studies algebraic structures like groups, rings, and fields. it generalizes arithmetic operations.",14,3
+Mathematics,topology is the study of properties of spaces that are preserved under continuous deformations. it includes concepts like continuity and connectedness.,21,3
+Mathematics,differential equations describe relationships involving rates of change. they are fundamental to modeling physical phenomena.,15,3
+Mathematics,numerical analysis develops algorithms for solving mathematical problems numerically. it bridges pure mathematics and computation.,15,3
+Mathematics,matrix theory studies rectangular arrays of numbers and their properties. matrices are essential in linear algebra and applications.,18,3
+Mathematics,"discrete mathematics covers mathematical structures that are fundamentally discrete. it includes logic, algorithms, and graph theory.",16,3
+Mathematics,functional analysis studies vector spaces of functions and their properties. it extends linear algebra to infinite dimensions.,17,3
+Mathematics,mathematical logic studies formal systems and the foundations of mathematics. it includes proof theory and model theory.,17,3
+Science,"physics is the natural science that studies matter, energy, and forces. it explains how the universe works at all scales.",20,3
+Science,"chemistry is the study of matter, its properties, composition, structure, and the changes it undergoes during chemical reactions.",18,2
+Science,"biology is the natural science that studies living organisms and life processes. it includes genetics, evolution, and ecology.",18,3
+Science,"astronomy is the study of celestial objects and phenomena beyond earth atmosphere. it includes stars, planets, and galaxies.",18,3
+Science,ecology is the study of organisms and their interactions with each other and their physical environment.,16,2
+Science,quantum mechanics describes the behavior of matter and energy at atomic and subatomic scales. it reveals the probabilistic nature of reality.,21,3
+Science,"thermodynamics studies heat, temperature, and energy transfer. it includes laws governing energy conservation and entropy.",15,3
+Science,"electromagnetism describes electric and magnetic fields and their interactions. it unifies electricity, magnetism, and light.",15,3
+Science,"optics is the study of light and its interactions with matter. it includes reflection, refraction, and wave properties.",18,3
+Science,"mechanics studies motion and forces. it includes kinematics, dynamics, and the laws of motion.",14,3
+Science,relativity describes gravity and the relationship between space and time. it includes special and general relativity.,16,3
+Science,"particle physics studies the fundamental constituents of matter and their interactions. it includes quarks, leptons, and gauge bosons.",18,3
+Science,"astrophysics applies physics to astronomical objects and phenomena. it studies stars, black holes, and cosmology.",15,3
+Science,"molecular biology studies the structure and function of molecules in living cells. it includes dna, proteins, and cellular processes.",19,3
+Science,genetics is the study of heredity and genes. it explains how traits are inherited and how organisms evolve.,18,3
+Science,"biochemistry studies chemical processes within living organisms. it includes metabolism, enzyme kinetics, and cell signaling.",15,3
+Science,"microbiology studies microscopic organisms like bacteria, viruses, and fungi. it includes their structure, function, and interactions.",16,3
+Science,"botany is the study of plants, including their structure, function, growth, and ecology.",13,2
+Science,"zoology is the study of animals, including their structure, behavior, classification, and ecology.",13,2
+Science,"geology is the study of earth, including its materials, structures, processes, and history.",13,2
+History,"ancient civilizations like egypt, mesopotamia, and the indus valley developed complex societies with writing systems and governance.",17,2
+History,the renaissance was a period of european cultural and artistic rebirth from the 14th to 17th centuries.,17,2
+History,the industrial revolution transformed societies through mechanization and factory systems from the 18th to 19th centuries.,16,2
+History,world war ii was a global conflict from 1939 to 1945 involving most of the world nations divided into two opposing military alliances.,23,2
+History,the cold war was a geopolitical tension between the soviet union and united states lasting from 1947 to 1991.,19,2
+History,"ancient greece developed democracy, philosophy, and scientific inquiry. it produced great thinkers like socrates, plato, and aristotle.",17,3
+History,"the roman empire was one of the largest empires in history. it developed law, engineering, and governance systems that influenced the world.",22,3
+History,the middle ages followed the fall of rome and preceded the renaissance. it was characterized by feudalism and the dominance of the church.,23,3
+History,the age of exploration saw european explorers discovering new lands and establishing global trade routes from the 15th to 17th centuries.,21,2
+History,"the enlightenment was an intellectual movement emphasizing reason, science, and individual rights from the 17th to 18th centuries.",18,2
+History,"the french revolution transformed french society and had profound effects on europe. it established principles of liberty, equality, and fraternity.",20,3
+History,the american revolution established the united states as an independent nation. it inspired democratic movements worldwide.,16,3
+History,"the victorian era was a period of industrial, cultural, political, scientific, and military change in britain from 1837 to 1901.",20,2
+History,world war i was a global conflict from 1914 to 1918 that reshaped the political landscape of europe.,18,2
+History,the great depression was a severe economic downturn in the 1930s affecting the entire world.,15,2
+History,the civil rights movement fought against racial discrimination and segregation in the united states during the 1950s and 1960s.,19,2
+History,the space race was a competition between the soviet union and united states to achieve space exploration milestones.,18,2
+History,the fall of the berlin wall in 1989 symbolized the end of the cold war and the beginning of german reunification.,21,2
+History,"the islamic golden age was a period of scientific, mathematical, and cultural flourishing in the islamic world from the 8th to 14th centuries.",23,2
+History,"the silk road was an extensive trade network connecting east and west, facilitating commerce and cultural exchange for centuries.",19,2
+Literature,shakespeare was an english playwright and poet who wrote 37 plays and 154 sonnets during the renaissance period.,18,2
+Literature,jane austen wrote novels of manners exploring social commentary and romantic relationships in regency england.,15,2
+Literature,charles dickens was a victorian novelist known for depicting social issues and creating memorable characters.,15,2
+Literature,mark twain was an american writer famous for his novels about life on the mississippi river and american frontier.,19,2
+Literature,george orwell wrote dystopian novels exploring themes of totalitarianism and political corruption.,12,2
+Literature,leo tolstoy was a russian novelist known for epic works exploring human nature and society.,15,2
+Literature,fyodor dostoevsky was a russian novelist exploring psychological depth and philosophical themes.,12,2
+Literature,jane eyre by charlotte bronte is a novel about a young woman seeking independence and love in victorian england.,19,2
+Literature,"wuthering heights by emily bronte is a gothic novel exploring passion, revenge, and social class.",15,2
+Literature,"pride and prejudice by jane austen explores themes of love, marriage, and social status in regency england.",17,2
+Literature,the great gatsby by f. scott fitzgerald captures the jazz age and explores themes of wealth and the american dream.,20,3
+Literature,to kill a mockingbird by harper lee addresses racial injustice and moral growth in the american south.,17,2
+Literature,one hundred years of solitude by gabriel garcía márquez is a magical realist novel about a family across generations.,19,2
+Literature,the catcher in the rye by j.d. salinger follows a teenager navigating adolescence and alienation.,15,4
+Literature,moby dick by herman melville is an epic novel about obsession and man versus nature.,15,2
+Literature,the odyssey by homer is an ancient greek epic poem about a hero's journey home after the trojan war.,19,2
+Literature,the iliad by homer is an ancient greek epic poem about the trojan war.,14,2
+Literature,"dante's divine comedy is a medieval italian epic poem describing a journey through hell, purgatory, and paradise.",17,2
+Literature,don quixote by miguel de cervantes is a novel about a man who loses his sanity from reading chivalric romances.,20,2
+Literature,"frankenstein by mary shelley is a gothic novel exploring themes of creation, responsibility, and isolation.",15,2
+Computer Science,programming is the process of creating a set of instructions that tell a computer how to perform a task.,19,2
+Computer Science,"data structures are specialized formats for organizing, processing, and storing data efficiently.",12,2
+Computer Science,algorithms are step-by-step procedures for solving a problem or accomplishing a task.,12,2
+Computer Science,databases are organized collections of structured data stored and accessed electronically.,11,2
+Computer Science,machine learning is a subset of artificial intelligence that enables systems to learn from data.,15,2
+Computer Science,artificial intelligence is the simulation of human intelligence processes by computer systems.,12,2
+Computer Science,deep learning uses neural networks with multiple layers to learn representations of data.,13,2
+Computer Science,natural language processing enables computers to understand and generate human language.,11,2
+Computer Science,computer vision enables computers to interpret and understand visual information from images and videos.,14,2
+Computer Science,web development involves creating and maintaining websites and web applications.,10,2
+Computer Science,software engineering is the systematic application of engineering approaches to software development.,12,2
+Computer Science,operating systems manage computer hardware and software resources and provide services to applications.,13,2
+Computer Science,computer networks enable communication and resource sharing between computers.,9,2
+Computer Science,cybersecurity protects computer systems and networks from unauthorized access and attacks.,11,2
+Computer Science,"cloud computing delivers computing services over the internet including storage, processing, and applications.",13,2
+Computer Science,distributed systems consist of multiple autonomous computers communicating through a network.,11,2
+Computer Science,compiler design involves creating programs that translate source code into executable machine code.,13,2
+Computer Science,formal languages and automata theory study abstract models of computation.,10,2
+Computer Science,cryptography protects information through encoding and decoding techniques.,8,2
+Computer Science,parallel computing uses multiple processors to solve problems simultaneously.,9,2
