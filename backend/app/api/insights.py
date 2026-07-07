@@ -19,11 +19,19 @@ class InsightResponse(BaseModel):
     class Config:
         from_attributes = True
 
+from backend.app.core.cache import cache
+
 @router.post("/generate", response_model=InsightResponse, summary="Generate new learning insights")
 def generate_insights(db: Session = Depends(get_db)):
+    # Check cache to avoid expensive LLM calls if generated recently
+    cached_insight = cache.get("latest_insight")
+    if cached_insight:
+        return cached_insight
+
     service = InsightService(db)
     try:
         insight = service.generate_insights()
+        cache.set("latest_insight", insight, ttl_seconds=3600) # Cache for 1 hour
         return insight
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
