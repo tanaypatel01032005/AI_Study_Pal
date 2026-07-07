@@ -70,7 +70,7 @@ venv.bak/
 *.pth
 data/
 datasets/
-models/
+/models/
 
 # VS Code
 .vscode/
