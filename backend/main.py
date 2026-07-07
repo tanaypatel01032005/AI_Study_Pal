@@ -42,6 +42,9 @@ def create_app() -> FastAPI:
 
     # Include routers
     app.include_router(health_router, prefix=settings.API_V1_STR, tags=["health"])
+    
+    from backend.app.api.documents import router as documents_router
+    app.include_router(documents_router, prefix=f"{settings.API_V1_STR}/documents", tags=["documents"])
 
     return app
 
