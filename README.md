@@ -6,6 +6,9 @@ AI Study Pal is a modern, production-ready educational platform designed to tran
 
 ## ✨ Features
 
+![AI Study Pal Dashboard](docs/dashboard.png)
+*(Place your application screenshot at `docs/dashboard.png`)*
+
 - **Document Ingestion & RAG Pipeline**: Upload PDFs or text documents. The system automatically chunks, embeds, and indexes them using FAISS and HuggingFace for lightning-fast, context-aware querying.
 - **AI Tutor Chat**: Engage in a conversational interface with an AI tutor that strictly answers questions based on your uploaded curriculum.
 - **Smart Quizzes & Flashcards**: Auto-generate targeted assessments and flashcards from your study materials to reinforce learning.
