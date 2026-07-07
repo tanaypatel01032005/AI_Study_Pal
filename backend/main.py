@@ -43,12 +43,13 @@ def create_app() -> FastAPI:
     # Include routers
     app.include_router(health_router, prefix=settings.API_V1_STR, tags=["health"])
     
-    from backend.app.api import documents, qa, chat
+    from backend.app.api import documents, qa, chat, quizzes
 
     # Register routers
     app.include_router(documents.router, prefix=f"{settings.API_V1_STR}/documents", tags=["documents"])
     app.include_router(qa.router, prefix=f"{settings.API_V1_STR}/qa", tags=["qa"])
     app.include_router(chat.router, prefix=f"{settings.API_V1_STR}/chat", tags=["chat"])
+    app.include_router(quizzes.router, prefix=f"{settings.API_V1_STR}/quizzes", tags=["quizzes"])
 
     return app
 
