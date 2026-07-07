@@ -24,10 +24,29 @@ def create_app() -> FastAPI:
     """
     Application factory to create the FastAPI instance.
     """
+    description = """
+    **AI Study Pal API** provides a powerful backend for managing educational documents, generating insights, quizzes, and study plans using LLMs.
+    
+    ## Features
+    * **Documents**: Upload and summarize educational documents.
+    * **QA & Chat**: Interactive chat and RAG pipeline for document querying.
+    * **Quizzes & Flashcards**: Auto-generate assessments and flashcards.
+    * **Insights**: Get AI-powered analytics on learning progress.
+    """
+    
     app = FastAPI(
         title=settings.PROJECT_NAME,
-        version=settings.VERSION,
+        description=description,
+        version="2.0.0",
         openapi_url=f"{settings.API_V1_STR}/openapi.json",
+        contact={
+            "name": "AI Study Pal Admin",
+            "url": "https://github.com/tanaypatel01032005",
+        },
+        license_info={
+            "name": "MIT License",
+            "url": "https://opensource.org/licenses/MIT",
+        },
         lifespan=lifespan,
     )
 
