@@ -28,6 +28,7 @@ class Settings(BaseSettings):
     OPENAI_API_KEY: str | None = None
     GEMINI_API_KEY: str | None = None
     ANTHROPIC_API_KEY: str | None = None
+    HF_API_KEY: str | None = None
     
     # RAG Settings
     EMBEDDING_MODEL: str = "sentence-transformers/all-MiniLM-L6-v2"
