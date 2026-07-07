@@ -13,6 +13,7 @@ class Document(Base):
     title = Column(String, index=True, nullable=True)
     subject = Column(String, index=True, nullable=True)
     content = Column(Text, nullable=False)
+    summary = Column(Text, nullable=True)
     
     # Metadata imported from legacy CSV
     word_count = Column(Integer, nullable=True)

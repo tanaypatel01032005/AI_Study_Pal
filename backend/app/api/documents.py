@@ -72,3 +72,35 @@ async def upload_document(
         word_count=new_doc.word_count or 0,
         message="Document uploaded and processed successfully."
     )
+
+class DocumentSummaryResponse(BaseModel):
+    id: int
+    summary: str
+
+@router.get("/{doc_id}/summary", response_model=DocumentSummaryResponse, summary="Get or generate document summary")
+def get_document_summary(doc_id: int, db: Session = Depends(get_db)):
+    """
+    Retrieve the summary of a document. If it doesn't exist, generate it using the summarization model.
+    """
+    doc = db.query(Document).filter(Document.id == doc_id).first()
+    if not doc:
+        raise HTTPException(status_code=404, detail="Document not found")
+        
+    if doc.summary:
+        return {"id": doc.id, "summary": doc.summary}
+        
+    # Generate summary
+    from backend.app.ai.llm_service import LLMService
+    llm = LLMService()
+    
+    # Simple strategy: summarize the first 2000 chars to avoid exceeding context window
+    # A robust strategy would chunk and map-reduce.
+    text_to_summarize = doc.content[:2000]
+    
+    summary = llm.summarize(text_to_summarize)
+    
+    # Save to DB
+    doc.summary = summary
+    db.commit()
+    
+    return {"id": doc.id, "summary": doc.summary}
